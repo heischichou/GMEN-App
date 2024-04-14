@@ -1,0 +1,42 @@
+{
+  "name": "gmen-app",
+  "version": "1.0.0",
+  "description": "A practice GraphQL, MongoDB, Express & Node app.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heischichou/GMEN-App.git"
+  },
+  "keywords": [
+    "graphql",
+    "express",
+    "mongo",
+    "mongodb",
+    "node"
+  ],
+  "author": "Jan Michael Garot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/heischichou/GMEN-App/issues"
+  },
+  "homepage": "https://github.com/heischichou/GMEN-App#readme",
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "graphql": "^16.8.1",
+    "graphql-http": "^1.22.1",
+    "mongoose": "^8.3.1",
+    "nodemon": "^3.1.0",
+    "ruru": "^2.0.0-beta.11",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node": "^10.9.2"
+  }
+}
