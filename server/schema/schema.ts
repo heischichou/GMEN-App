@@ -7,7 +7,7 @@ import {
   GraphQLInt,
   GraphQLEnumType,
   GraphQLBoolean,
-  // GraphQLList,
+  GraphQLList,
 } from "graphql";
 import { Employee, Company } from "@/types";
 import { data } from "../data";
@@ -66,6 +66,16 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
+    employees: {
+      type: new GraphQLNonNull(new GraphQLList(EmployeeType)),
+      resolve: async (root, args) => {
+        try {
+          return employees;
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    },
     company: {
       type: new GraphQLNonNull(CompanyType),
       args: {
@@ -74,6 +84,16 @@ const RootQuery = new GraphQLObjectType({
       resolve: async (root, { id }) => {
         try {
           return companies.find((company: Company) => company.id === id);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    },
+    companies: {
+      type: new GraphQLNonNull(new GraphQLList(CompanyType)),
+      resolve: async (root, args) => {
+        try {
+          return employees;
         } catch (error) {
           console.log(error);
         }
