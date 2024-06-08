@@ -52,7 +52,7 @@ const EmployeeType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
-    hello: { type: GraphQLString },
+    server_status: { type: GraphQLString },
     employee: {
       type: new GraphQLNonNull(EmployeeType),
       args: {
@@ -93,7 +93,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLNonNull(new GraphQLList(CompanyType)),
       resolve: async (root, args) => {
         try {
-          return employees;
+          return companies;
         } catch (error) {
           console.log(error);
         }
