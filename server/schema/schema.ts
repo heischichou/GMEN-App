@@ -9,8 +9,12 @@ import {
   GraphQLBoolean,
   GraphQLList,
 } from "graphql";
-import { Employee, Company } from "@/types";
-import { data } from "../data";
+// import { Employee, Company } from "@/types";
+import { data } from "@/data";
+
+// Mongoose Models
+import CompanyModel from "@/models/Company";
+import EmployeeModel from "@/models/Employee"
 
 const { employees, companies } = data;
 // const EmployeeFields = Object.keys(employees[0]);
@@ -45,7 +49,7 @@ const EmployeeType = new GraphQLObjectType({
     gender: { type: GenderEnum },
     age: { type: new GraphQLNonNull(GraphQLInt) },
     active: { type: new GraphQLNonNull(GraphQLBoolean) },
-    companyId: { type: new GraphQLNonNull(GraphQLString) },
+    company_id: { type: new GraphQLNonNull(GraphQLString) },
   }),
 });
 
@@ -60,7 +64,7 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve: async (root, { id }) => {
         try {
-          return employees.find((Employee: Employee) => Employee.id === id);
+          return employees.find((Employee: any) => Employee.id === id);
         } catch (error) {
           console.log(error);
         }
@@ -70,7 +74,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLNonNull(new GraphQLList(EmployeeType)),
       resolve: async (root, args) => {
         try {
-          return employees;
+          return EmployeeModel.find();
         } catch (error) {
           console.log(error);
         }
@@ -83,7 +87,7 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve: async (root, { id }) => {
         try {
-          return companies.find((company: Company) => company.id === id);
+          return companies.find((company: any) => company.id === id);
         } catch (error) {
           console.log(error);
         }
@@ -93,7 +97,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLNonNull(new GraphQLList(CompanyType)),
       resolve: async (root, args) => {
         try {
-          return companies;
+          return CompanyModel.find();
         } catch (error) {
           console.log(error);
         }
